@@ -5,8 +5,8 @@ const axios = require('axios');
 const { createClient } = require('@supabase/supabase-js');
 const supabase = createClient(process.env.SB_URL, process.env.SB_KEY, { auth: { persistSession: false } });
 const botly = new Botly({
-  accessToken: process.env.PAGE_ACCESS_TOKEN,
-  verifyToken: process.env.VERIFY_TOKEN,
+  accessToken: process.env.token,
+  verifyToken: process.env.vtoken,
   notificationType: Botly.CONST.REGULAR,
   FB_URL: "https://graph.facebook.com/v2.6/",
 });
