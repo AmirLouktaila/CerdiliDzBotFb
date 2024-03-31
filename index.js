@@ -123,11 +123,11 @@ ${infos}
       return reply;
     } else {
       console.log("Login failed. Status code:", response.status);
-      return "Login failed. Status code: " + response.status;
+      return "خطأ في معلومات تسجيل الدخول ";
     }
   } catch (error) {
     console.error("Error in POST request:", error);
-    return "Error in POST request: " + error.message;
+    return "للاسف الموقع متوقف حاول مرة اخرى لاحقا";
   }
 }
 
@@ -155,7 +155,6 @@ botly.on("message", async (senderId, message) => {
               id: senderId, text: res,
               quick_replies: [
                 botly.createQuickReply("اعادة شحن🔄", user2[0].number),
-                botly.createQuickReply("حساب المطور", "https://www.facebook.com/salah.louktaila")
               ]
             });
           });
@@ -229,14 +228,8 @@ botly.on("postback", async (senderId, message, postback) => {
         id: senderId, text: res,
         quick_replies: [
           botly.createQuickReply("اعادة شحن🔄", user2[0].number),
-          botly.createQuickReply("حساب المطور", "https://www.facebook.com/salah.louktaila")
         ]
       });
-    } else if (message.message.text == "حساب المطور 💻👤") {
-      botly.sendText({ id: senderId, text: postback });
-    } else if (message.message.text == "حساب المطور 💻👤") {
-      botly.sendText({ id: senderId, text: postback });
-
     } else if (postback == "up" || postback == "down") {
       botly.sendText({ id: senderId, text: "شكرا لترك التقييم ♥" });
     } else if (postback == "followup") {
