@@ -237,6 +237,25 @@ botly.on("postback", async (senderId, message, postback) => {
     }
   }
 });
+/* ---- PING ---- */
 
-app.listen(3000, () => console.log(`App is on port : 3000`));
+function keepAppRunning() {
+    setInterval(() => {
+        https.get(`${process.env.RENDER_EXTERNAL_URL}/ping`, (resp) => {
+            if (resp.statusCode === 200) {
+                console.log('Ping successful');
+            } else {
+                console.error('Ping failed');
+            }
+        });
+    }, 5 * 60 * 1000);
+}
 
+app.get('/ping', (req, res) => { res.status(200).json({ message: 'Ping successful' }); });
+
+/* ---- PING ---- */
+
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server is running on port ${process.env.PORT || 3000}`);
+    keepAppRunning();
+});
